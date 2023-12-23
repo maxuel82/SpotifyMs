@@ -25,8 +25,7 @@ namespace SpotifyMs.Tests.Domain
             string senha = "123456";
 
             //Act
-            Usuario usuario = new Usuario();
-            usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
+            Usuario usuario = Usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
 
             //Assert
             Assert.NotNull(usuario.Email);
@@ -67,8 +66,8 @@ namespace SpotifyMs.Tests.Domain
             //Act
             Assert.Throws<Exception>(() =>
             {
-                Usuario usuario = new Usuario();
-                usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
+                Usuario usuario = Usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
+
             });
         }
 
@@ -93,8 +92,7 @@ namespace SpotifyMs.Tests.Domain
             //Act
             Assert.Throws<Exception>(() =>
             {
-                Usuario usuario = new Usuario();
-                usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
+                Usuario usuario = Usuario.CriarConta(nome, email, senha, DateTime.Now, plano, cartao);
             });
         }
         

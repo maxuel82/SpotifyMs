@@ -16,19 +16,9 @@ namespace SpotifyMS.Tests.Domain.Notificacao
             string titulo = "Titulo teste notificação sucesso";
             string menssagem = "Mensagem sucesso";
 
-            Usuario usuarioDestino = new Usuario() 
-            {
-               Nome = "Usuario Destino",
-               Email = "usuario.destino@teste.com",
-               Senha = "123456"
-             };
-
-            Usuario usuarioRemetente = new Usuario()
-            {
-                Nome = "Usuario Remetente",
-                Email = "usuario.remetente@teste.com",
-                Senha = "654321"
-            };
+            Usuario usuarioDestino  = Usuario.Criar("Usuario Destino", "usuario.destino@teste.com", "123456", DateTime.Now.AddYears(-18));
+            
+            Usuario usuarioRemetente = Usuario.Criar("Usuario Remetente", "usuario.remetente@teste.com", "654321", DateTime.Now.AddYears(-25));
 
             var notificacao = SpotifyMs.Domain.Notificacao.Notificacao.Criar(titulo, menssagem, TipoNotificacao.Usuario, usuarioDestino, usuarioRemetente);
             usuarioDestino.Notificacoes.Add(notificacao);
@@ -45,13 +35,7 @@ namespace SpotifyMS.Tests.Domain.Notificacao
             string titulo = "Titulo teste notificação sucesso";
             string menssagem = "Mensagem sucesso";
 
-            Usuario usuarioDestino = new Usuario()
-            {
-                Nome = "Usuario Destino",
-                Email = "usuario.destino@teste.com",
-                Senha = "123456"
-            };
-
+            Usuario usuarioDestino = Usuario.Criar("Usuario Destino", "usuario.destino@teste.com", "123456", DateTime.Now.AddYears(-18));                      
 
             Assert.Throws<ArgumentNullException>(() =>
             {

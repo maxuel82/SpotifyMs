@@ -1,4 +1,5 @@
 ﻿using SpotifyMs.Domain.Conta.Agreggates;
+using SpotifyMs.Domain.Core.ValueObject;
 using SpotifyMs.Domain.Streaming.ValueObject;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,24 @@ namespace SpotifyMs.Domain.Streaming.Aggregates
 {
     public class Musica
     {
-        public Guid Id { get; set; }
-        public String Nome { get; set; }
-        public Duracao Duracao { get; set; }
+        public Guid Id { get; private set; }
+        public String Nome { get; private set; }
+        public Duracao Duracao { get; private set; }
 
         public List<Playlist> Playlists { get; set; } = new List<Playlist>();
+
+        public static Musica Criar(string nome, Duracao duracao)
+        {
+            if (string.IsNullOrWhiteSpace(nome))
+                throw new Exception("Informe o nome da musica.");
+
+            return new Musica()
+            {
+                Id = Guid.NewGuid(),
+                Nome = nome,
+                Duracao = new Duracao(duracao),
+            };
+        }
 
     }
 }

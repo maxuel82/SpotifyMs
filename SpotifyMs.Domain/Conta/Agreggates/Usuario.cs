@@ -20,34 +20,48 @@ namespace SpotifyMs.Domain.Conta.Agreggates
         public const string PLAYLIST_FAVORITAS = "Favoritas";
         private const string SUFIXO_TRANSACAO = "Assinatura Plano:";
 
-        public Guid Id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public DateTime DtNascimento { get; set; }
+        public Guid Id { get; private set; }
+        public string Nome { get; private set; }
+        public string Email { get; private set; }
+        public string Senha { get; private set; }
+        public DateTime DtNascimento { get; private set; }
         public List<Cartao> Cartoes { get; set; } = new List<Cartao>();
         public List<Assinatura> Assinaturas { get; set; } = new List<Assinatura>();
         public List<Playlist> Playlists { get; set; } = new List<Playlist>();
         public List<Notificacao.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Notificacao>();
 
 
-        public void CriarConta(string nome, string email, string senha, DateTime dtNascimento ,Plano plano, Cartao cartao)
+        public static Usuario Criar(string nome, string email, string senha, DateTime dtNascimento)
         {
-            this.Nome = nome;
-            this.Email = email;
-            this.DtNascimento = dtNascimento;
+            if (string.IsNullOrWhiteSpace(nome))
+                throw new Exception("Informe o nome do usuario.");
 
-            //Criptografar a senha
-            this.Senha = this.CriptografarSenha(senha);
+            Usuario usuario = new Usuario()           
+            {
+                Id = Guid.NewGuid(),
+                Nome = nome,
+                Email = email,
+                Senha = senha
+            };
+
+            usuario.Senha = usuario.CriptografarSenha(usuario.Senha);
+
+            return usuario;
+        }
+        public static Usuario CriarConta(string nome, string email, string senha, DateTime dtNascimento ,Plano plano, Cartao cartao)
+        {
+            Usuario usuario = Usuario.Criar(nome, email, senha, dtNascimento);
 
             //Assinar um plano
-            this.AssinarPlano(plano, cartao);
+            usuario.AssinarPlano(plano, cartao);
 
             //Adicionar cartão
-            this.AdicionarCartao(cartao);
+            usuario.AdicionarCartao(cartao);
 
             //Criar a playlist Favorita
-            this.CriarPlaylist(nome: PLAYLIST_FAVORITAS, publica: false);
+            usuario.CriarPlaylist(nome: PLAYLIST_FAVORITAS, publica: false);
+
+            return usuario;
         }
 
         public void CriarPlaylist(string nome, bool publica = true)
