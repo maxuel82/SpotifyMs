@@ -94,6 +94,18 @@ class Cartao
 Monetario "1..1 " --|>  "1..1 " Cartao
 Cartao "1..N  " --|>  "1..1     " Usuario
 
+class Transacao
+{
+  + Guid Id
+  + DateTime DtTransacao
+  + Monetario Valor
+  + String Descricao
+  + Comerciante Comerciante
+}
+Monetario "1..1  " --|>  "1..1  " Transacao
+Comerciante "1..N  " --|>  "1..1     " Transacao
+Cartao "1..N  " --|>  "1..1     " Transacao
+
 class Playlist
  {
    + Guid
