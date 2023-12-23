@@ -36,7 +36,7 @@ namespace SpotifyMs.Domain.Conta.Agreggates
             if (string.IsNullOrWhiteSpace(nome))
                 throw new Exception("Informe o nome do usuario.");
 
-            Usuario usuario = new Usuario()           
+            Usuario usuario = new Usuario()
             {
                 Id = Guid.NewGuid(),
                 Nome = nome,
@@ -48,7 +48,7 @@ namespace SpotifyMs.Domain.Conta.Agreggates
 
             return usuario;
         }
-        public static Usuario CriarConta(string nome, string email, string senha, DateTime dtNascimento ,Plano plano, Cartao cartao)
+        public static Usuario CriarConta(string nome, string email, string senha, DateTime dtNascimento, Plano plano, Cartao cartao)
         {
             Usuario usuario = Usuario.Criar(nome, email, senha, dtNascimento);
 
@@ -75,7 +75,7 @@ namespace SpotifyMs.Domain.Conta.Agreggates
             });
         }
 
-        private void AdicionarCartao(Cartao cartao) 
+        private void AdicionarCartao(Cartao cartao)
             => this.Cartoes.Add(cartao);
 
         private void AssinarPlano(Plano plano, Cartao cartao)
@@ -87,12 +87,8 @@ namespace SpotifyMs.Domain.Conta.Agreggates
             DesativarAssinaturaAtiva();
 
             //Adiciona uma nova assinatura
-            this.Assinaturas.Add(new Assinatura()
-            {
-                Ativo = true,
-                Plano = plano,
-                DtAtivacao = DateTime.Now,
-            });
+
+            this.Assinaturas.Add(Assinatura.Criar(plano));
 
             //Adicionar notificação de transação autorizada
             Notificacao.Notificacao.Criar(Notificacao.Notificacao.NOTIFICACAO_TRANSACAO_AUTORIZADA, "Pagamento Plano: " + plano.Nome, TipoNotificacao.Sistema, this, null);
@@ -103,8 +99,12 @@ namespace SpotifyMs.Domain.Conta.Agreggates
             //Caso tenha alguma assintura ativa, deseativa ela
             if (this.Assinaturas.Count > 0 && this.Assinaturas.Any(x => x.Ativo))
             {
-                var planoAtivo = this.Assinaturas.FirstOrDefault(x => x.Ativo);
-                planoAtivo.Ativo = false;
+                var planoComAssinaturaAtivo = this.Assinaturas.FirstOrDefault(x => x.Ativo);
+
+                if (!(planoComAssinaturaAtivo == null))
+                {
+                    planoComAssinaturaAtivo.InativarAssinatura();
+                }
             }
         }
 
