@@ -3,14 +3,8 @@ using SpotifyMs.Domain.Notificacao;
 using SpotifyMs.Domain.Streaming.Aggregates;
 using SpotifyMs.Domain.Transacao.Agreggates;
 using SpotifyMs.Domain.Transacao.ValueObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
 
 namespace SpotifyMs.Domain.Conta.Agreggates
 {

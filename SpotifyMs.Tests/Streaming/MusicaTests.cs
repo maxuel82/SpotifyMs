@@ -1,10 +1,4 @@
 ﻿using SpotifyMs.Domain.Streaming.Aggregates;
-using SpotifyMs.Domain.Streaming.ValueObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyMS.Tests.Streaming
 {

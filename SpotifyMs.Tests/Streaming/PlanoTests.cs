@@ -1,6 +1,4 @@
-﻿using SpotifyMs.Domain.Conta.Agreggates;
-using SpotifyMs.Domain.Streaming.Aggregates;
-using SpotifyMs.Domain.Transacao.Agreggates;
+﻿using SpotifyMs.Domain.Streaming.Aggregates;
 
 namespace SpotifyMS.Tests.Streaming
 {

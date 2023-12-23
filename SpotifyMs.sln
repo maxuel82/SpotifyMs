@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyMS.Domain", "Spotify
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyMS.Tests", "SpotifyMs.Tests\SpotifyMS.Tests.csproj", "{22CA798C-F10E-42D4-B15B-331781B9CABD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagramas", "Diagramas", "{EA586642-8F48-42C7-B69A-3CA1CDDE6A9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

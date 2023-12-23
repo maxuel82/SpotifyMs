@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpotifyMs.Domain.Streaming.Aggregates
+﻿namespace SpotifyMs.Domain.Streaming.Aggregates
 {
     public class Album
     {

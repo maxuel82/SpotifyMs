@@ -1,0 +1,2 @@
+Diagrama criado utilizando site https://www.plantuml.com/plantuml/uml/
+basta abrir o site e colar o conteudo do arquivo DiagramaClasses.plantuml para gerar o diagrama

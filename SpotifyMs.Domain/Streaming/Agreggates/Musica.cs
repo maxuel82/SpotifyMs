@@ -1,11 +1,5 @@
 ﻿using SpotifyMs.Domain.Conta.Agreggates;
-using SpotifyMs.Domain.Core.ValueObject;
 using SpotifyMs.Domain.Streaming.ValueObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyMs.Domain.Streaming.Aggregates
 {

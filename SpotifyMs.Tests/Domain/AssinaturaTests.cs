@@ -1,6 +1,5 @@
 ﻿using SpotifyMs.Domain.Conta.Agreggates;
 using SpotifyMs.Domain.Streaming.Aggregates;
-using System.Numerics;
 
 namespace SpotifyMS.Tests.Domain
 {

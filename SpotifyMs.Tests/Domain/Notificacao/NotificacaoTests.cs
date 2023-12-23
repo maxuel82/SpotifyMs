@@ -1,8 +1,5 @@
 ﻿using SpotifyMs.Domain.Conta.Agreggates;
 using SpotifyMs.Domain.Notificacao;
-using SpotifyMs.Domain.Streaming.Aggregates;
-using SpotifyMs.Domain.Transacao.Agreggates;
-using System.Numerics;
 
 namespace SpotifyMS.Tests.Domain.Notificacao
 {

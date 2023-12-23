@@ -1,0 +1,142 @@
+@startuml
+class Monetario
+{
+  + Decimal Valor
+  + Monetario(Decimal valor)
+  + string Formatado()
+}
+
+class Comerciante
+{
+   + string Nome
+   + Comerciante Criar(string nome)
+   + String Formatado()
+}
+
+class Duracao
+{
+   + int Valor
+   + Duracao(int valor)
+}
+
+class Plano
+{
+   + Guid Id
+   + String Nome
+   + Monetario Valor
+   + Plano Criar(string nome, Monetario valor)
+}
+
+Monetario "1..1  " --|>  "1..1  " Plano
+
+class Assinatura 
+{
+  + Guid id
+  + Boolean Ativo
+  + DateTime DataAtivacao
+  + DateTime DataInativacao 
+  + Assinatura Criar()
+  + Plano Plano 
+  + Assinatura Criar(Plano plano)  
+}
+
+Plano "1..1  " --|>  "1..1  " Assinatura 
+
+class Notificacao
+ {
+   + Guid Id 
+   + DateTime DataNotificacao 
+   + String Mensagem 
+   + String Titulo 
+   + Usuario UsuarioDestino 
+   + Usuario? UsuarioRemetente 
+   + TipoNotificacao TipoNotificacao 
+   + Notificacao Criar(string titulo, string mensagem, TipoNotificacao tipoNotificacao, Usuario destino, Usuario remetente)
+}
+
+class Usuario
+{
+   + Guid Id
+   + String Nome
+   + String Email
+   + String Senha
+   + DateTime DtNascimento
+   + List<Cartao> Cartoes
+   + List<Assinatura> Assinaturas
+   + List<Playlist> Playlists
+   + List<Notificacao.Notificacao> Notificacoes
+   - AdicionarCartao(Cartao cartao)
+   - AssinarPlano(Plano plano, Cartao cartao)
+   - DesativarAssinaturaAtiva()
+   - String CriptografarSenha(string senhaAberta)
+   + Usuario Criar(string nome, string email, string senha, DateTime dtNascimento)
+   + Usuario CriarConta(string nome, string email, string senha, DateTime dtNascimento, Plano plano, Cartao cartao)
+   + CriarPlaylist(string nome, bool publica = true)
+}
+
+Notificacao "1..N  " --|>  "1..1  " Usuario
+Assinatura  "1..N   " --|>  "1..1   " Usuario
+
+class Cartao
+{
+  + Guid Id
+  + Boolean Ativo
+  + Monetario Limite
+  + String Numero
+  + List<Transacao> Transacoes
+  - ValidarTransacao(Transacao transacao)
+  - VerificaLimite(Transacao transacao)
+  - IsCartaoAtivo()
+  - IsCartaoValido()
+  + CriarTransacao(Comerciante comerciante, Monetario valor, string Descricao)
+}
+
+Monetario "1..1 " --|>  "1..1 " Cartao
+Cartao "1..N  " --|>  "1..1     " Usuario
+
+class Playlist
+ {
+   + Guid
+   + String Nome
+   + Boolean Publica
+   + Usuario Usuario
+   + DateTime DtCriacao
+   + List<Musica> Musicas
+ }
+
+Playlist  "  1..N   " --|>  "    1..1   " Usuario
+
+class Musica
+{
+  + Guid Id
+  + String Nome
+  + Duracao Duracao
+  + List<Playlist> Playlists
+  + Musica Criar(string nome, Duracao duracao)
+}
+Duracao  "1..1 " --|>  "1..1  " Musica
+Playlist "1..N  " --|>  "1..N  " Musica
+
+class Album
+{
+  + Guid Id
+  + String Nome
+  + public List<Musica> Musica     
+  + AdicionarMusica(Musica musica)
+  + AdicionarMusica(List<Musica> musicas) 
+}
+
+Album "1..N  " --|>  "1..N  " Musica
+
+class Banda
+{
+  + Guid Id
+  + String Nome
+  + String Descricao
+  + String Backdrop
+  + List<Album> Albums
+  + AdicionarAlbum(Album album) 
+}
+
+Album "1..1  " --|>  "1..N  " Banda
+@enduml
