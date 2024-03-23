@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SpotifyMs.Domain.Conta.Agreggates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyMS.Repository.Mapping.Conta
 {
@@ -21,7 +16,7 @@ namespace SpotifyMS.Repository.Mapping.Conta
             builder.Property(x => x.DataAtivacao).IsRequired();
             builder.Property(x => x.DataInativacao).IsRequired(false);
            
-            //hasOner um para ,  olhe o withMany fica vazio           
+            //hasOner um para um ,  olhe o withMany fica vazio           
             builder.HasOne(x => x.Plano).WithMany();
         }
     }

@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SpotifyMs.Domain.Streaming.Aggregates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyMS.Repository.Mapping.Streaming
 {
@@ -19,7 +14,7 @@ namespace SpotifyMS.Repository.Mapping.Streaming
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(50);
 
-            builder.HasMany(x => x.Musica).WithOne().OnDelete(DeleteBehavior.Cascade);  
+            builder.HasMany(x => x.Musica).WithOne().OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

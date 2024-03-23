@@ -1,22 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SpotifyMs.Domain.Conta.Agreggates;
-using SpotifyMs.Domain.Notificacao;
-using SpotifyMs.Domain.Transacao.Agreggates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyMS.Repository.Mapping.Conta
 {
-    internal class UsuarioMapping : IEntityTypeConfiguration<Usuario>
+    public class UsuarioMapping : IEntityTypeConfiguration<Usuario>
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable(nameof(Assinatura));
+            builder.ToTable(nameof(Usuario));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();

@@ -2,12 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SpotifyMs.Domain.Streaming.Aggregates;
 using SpotifyMs.Domain.Streaming.ValueObject;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyMS.Repository.Mapping.Streaming
 {
@@ -24,11 +18,11 @@ namespace SpotifyMS.Repository.Mapping.Streaming
             //mapeando a pk.
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Id).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.Nome).IsRequired().HasMaxLength(50);
 
             //mapeando coluna com converso classe duração.  ond d=duração  c=configuração
-            builder.OwnsOne<Duracao>(d => d.Duracao, c=>
-            { 
+            builder.OwnsOne<Duracao>(d => d.Duracao, c =>
+            {
                 c.Property(x => x.Valor).IsRequired().HasMaxLength(50);
             });
 
