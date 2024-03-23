@@ -5,8 +5,8 @@ namespace SpotifyMs.Domain.Streaming.Aggregates
     public class Plano
     {
         public Guid Id { get; private set; }
-        public String Nome { get; private set; }
-        public Monetario Valor { get; private set; }
+        public String? Nome { get; private set; }
+        public Monetario? Valor { get; private set; }
 
 
         public static Plano Criar(string nome, Monetario valor)

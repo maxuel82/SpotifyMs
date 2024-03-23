@@ -9,6 +9,7 @@ namespace SpotifyMs.Domain.Streaming.Aggregates
         public String Nome { get; private set; }
         public Duracao Duracao { get; private set; }
 
+        //exemplo de relação n x n musica e playlist
         public List<Playlist> Playlists { get; set; } = new List<Playlist>();
 
         public static Musica Criar(string nome, Duracao duracao)
