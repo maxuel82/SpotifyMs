@@ -10,8 +10,8 @@ namespace SpotifyMs.Domain.Notificacao
         public DateTime DataNotificacao { get; set; }
         public String Mensagem { get; set; }
         public String Titulo { get; set; }
-        public Usuario UsuarioDestino { get; set; }
-        public Usuario? UsuarioRemetente { get; set; }
+        public virtual Usuario UsuarioDestino { get; set; }
+        public virtual Usuario? UsuarioRemetente { get; set; }
         public TipoNotificacao TipoNotificacao { get; set; }
 
 

@@ -8,8 +8,8 @@ namespace SpotifyMs.Domain.Conta.Agreggates
         public Guid Id { get; private set; }
         public Boolean Ativo { get; private set; }
         public DateTime DataAtivacao { get; private set; }
-        public DateTime DataInativacao { get; private set; }
-        public Plano Plano { get; private set; }
+        public DateTime? DataInativacao { get; private set; }
+        public virtual Plano Plano { get; private set; }
 
 
         public static Assinatura Criar(Plano plano)

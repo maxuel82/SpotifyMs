@@ -4,13 +4,14 @@
     {
         public Guid Id { get; set; }
         public string Nome { get; set; }
-        public List<Musica> Musica { get; set; } = new List<Musica>();
+        public virtual IList<Musica> Musica { get; set; } = new List<Musica>();
         
 
         public void AdicionarMusica(Musica musica) => 
             this.Musica.Add(musica);
-        public void AdicionarMusica(List<Musica> musicas) =>
-            this.Musica.AddRange(musicas);
+			
+        //public void AdicionarMusica(List<Musica> musicas) =>
+        //    this.Musica.AddRange(musicas);
    
     }
 }

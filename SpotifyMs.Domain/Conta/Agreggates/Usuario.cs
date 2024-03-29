@@ -19,10 +19,10 @@ namespace SpotifyMs.Domain.Conta.Agreggates
         public string Email { get; private set; }
         public string Senha { get; private set; }
         public DateTime DtNascimento { get; private set; }
-        public List<Cartao> Cartoes { get; set; } = new List<Cartao>();
-        public List<Assinatura> Assinaturas { get; set; } = new List<Assinatura>();
-        public List<Playlist> Playlists { get; set; } = new List<Playlist>();
-        public List<Notificacao.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Notificacao>();
+        public virtual IList<Cartao> Cartoes { get; set; } = new List<Cartao>();
+        public virtual IList<Assinatura> Assinaturas { get; set; } = new List<Assinatura>();
+        public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();
+        public virtual IList<Notificacao.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Notificacao>();
 
 
         public static Usuario Criar(string nome, string email, string senha, DateTime dtNascimento)
@@ -42,6 +42,7 @@ namespace SpotifyMs.Domain.Conta.Agreggates
 
             return usuario;
         }
+		
         public static Usuario CriarConta(string nome, string email, string senha, DateTime dtNascimento, Plano plano, Cartao cartao)
         {
             Usuario usuario = Usuario.Criar(nome, email, senha, dtNascimento);
