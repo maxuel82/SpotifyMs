@@ -3,6 +3,7 @@ using SpotifyMs.Domain.Notificacao;
 using SpotifyMs.Domain.Streaming.Aggregates;
 using SpotifyMs.Domain.Transacao.Agreggates;
 using SpotifyMs.Domain.Transacao.ValueObject;
+using SpotifyMS.Domain.Core.Extension;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -70,7 +71,7 @@ namespace SpotifyMs.Domain.Conta.Agreggates
             });
         }
 
-        private void AdicionarCartao(Cartao cartao)
+        private void AdicionarCartao(Cartao cartao) 
             => this.Cartoes.Add(cartao);
 
         private void AssinarPlano(Plano plano, Cartao cartao)
@@ -105,13 +106,7 @@ namespace SpotifyMs.Domain.Conta.Agreggates
 
         private String CriptografarSenha(string senhaAberta)
         {
-            SHA256 criptoProvider = SHA256.Create();
-
-            byte[] btexto = Encoding.UTF8.GetBytes(senhaAberta);
-
-            var criptoResult = criptoProvider.ComputeHash(btexto);
-
-            return Convert.ToHexString(criptoResult);
+            return senhaAberta.HashSHA256();
         }
     }
 }

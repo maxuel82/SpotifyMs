@@ -17,8 +17,8 @@ namespace SpotifyMS.Repository.Mapping.Conta
             builder.Property(x => x.Senha).IsRequired().HasMaxLength(100);
             builder.Property(x => x.DtNascimento).IsRequired();
 
-            //relacionamentos
-            //varios cartoes
+            //Relacionamentos
+               /*varios cartoes*/
             builder.HasMany(x => x.Cartoes).WithOne();
             builder.HasMany(x => x.Assinaturas).WithOne();
             builder.HasMany(x => x.Playlists).WithOne(x => x.Usuario);

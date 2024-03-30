@@ -24,7 +24,7 @@ namespace SpotifyMS.Repository.Mapping.Conta
 
             //Atençao exemplo relação n p/ n  entre musica e
             //WithOne um pra um  WithMany n para n.
-            builder.HasMany(x => x.Musicas).WithMany(x => x.Playlists);                                     
+            builder.HasMany(x => x.Musicas).WithMany(x => x.Playlists);
         }
     }
 }

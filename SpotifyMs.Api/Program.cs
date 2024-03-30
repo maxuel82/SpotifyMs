@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using SpotifyMs.Aplication.Conta;
+using SpotifyMs.Aplication.Conta.Profile;
+using SpotifyMs.Aplication.Streaming;
 using SpotifyMS.Repository;
+using SpotifyMS.Repository.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,17 +21,18 @@ builder.Services.AddDbContext<SpotifyMSContext>(c =>
 });
 
 
-//builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
+/*Injeção de dependencia.*/
+builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
 
 
-////Repositories
-//builder.Services.AddScoped<UsuarioRepository>();
-//builder.Services.AddScoped<PlanoRepository>();
-//builder.Services.AddScoped<BandaRepository>();
+/*Repositories*/
+builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<PlanoRepository>();
+builder.Services.AddScoped<BandaRepository>();
 
-////Services
-//builder.Services.AddScoped<UsuarioService>();
-//builder.Services.AddScoped<BandaService>();
+/*Services*/
+builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<BandaService>();
 
 
 var app = builder.Build();

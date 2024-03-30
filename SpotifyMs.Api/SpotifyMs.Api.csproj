@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SpotifyMs.Aplication\SpotifyMs.Aplication.csproj" />
     <ProjectReference Include="..\SpotifyMS.Repository\SpotifyMS.Repository.csproj" />
   </ItemGroup>
 

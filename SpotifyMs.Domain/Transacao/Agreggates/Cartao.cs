@@ -16,7 +16,6 @@ namespace SpotifyMs.Domain.Transacao.Agreggates
 
         public void CriarTransacao(Comerciante comerciante, Monetario valor, string Descricao = "")
         {
-            
             //Verificar se o cartão está ativo
             this.IsCartaoAtivo();
 
