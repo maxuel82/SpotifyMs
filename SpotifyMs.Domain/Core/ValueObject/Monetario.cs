@@ -7,6 +7,13 @@
         public static implicit operator decimal(Monetario d) => d.Valor;
         public static implicit operator Monetario(decimal valor) => new Monetario(valor);
 
+        
+        public Monetario()
+        {
+            /*Criado construtor publico, vazio para corrigir erro no mapeamento atomatico na criação do usuario 
+            SpotifyMs.Aplication\Conta\UsuarioService.cs  metodo   UsuarioDto Criar*/
+        }
+
         public Monetario(Decimal valor)
         {
             if (valor < 0)
