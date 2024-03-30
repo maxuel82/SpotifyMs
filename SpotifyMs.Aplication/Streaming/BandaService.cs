@@ -54,7 +54,7 @@ namespace SpotifyMs.Aplication.Streaming
             var novoAlbum = this.AlbumDtoParaAlbum(dto);
 
             banda.AdicionarAlbum(novoAlbum);
-
+            //faz update para atualizar banda
             this.BandaRepository.Update(banda);
 
             var result = this.AlbumParaAlbumDto(novoAlbum);
@@ -96,7 +96,7 @@ namespace SpotifyMs.Aplication.Streaming
 
             foreach (var item in banda.Albums)
             {
-                result.Add(AlbumParaAlbumDto(item));
+                result.Add(AlbumParaAlbumDto(item, idBanda));
             }
 
             return result;
@@ -112,24 +112,29 @@ namespace SpotifyMs.Aplication.Streaming
 
             foreach (MusicDto item in dto.Musicas)
             {
-                /*DUVIDA -REMOVER
-                 *album.AdicionarMusica(new Musica
+                 album.AdicionarMusica(new Musica
                 {
                     Nome = item.Nome,
                     Duracao = new Domain.Streaming.ValueObject.Duracao(item.Duracao)
-                });*/
-
-                album.AdicionarMusica(Musica.Criar(item.Nome, item.Duracao));                           
+                });
+                 /*DUVIDA -REMOVER, talvez o contstrutor já crieo o guid*/
+                /*album.AdicionarMusica(Musica.Criar(item.Nome, item.Duracao));*/
             }
 
             return album;
         }
 
-        private AlbumDto AlbumParaAlbumDto(Album album)
+        private AlbumDto AlbumParaAlbumDto(Album album, Guid? idBanda = null)
         {
             AlbumDto dto = new AlbumDto(); 
             dto.Id = album.Id;
             dto.Nome = album.Nome;
+            /*Para  retornar na requisição o Id da banda, não estava retornando*/ 
+            if (idBanda.HasValue)
+            {
+                dto.BandaId = (Guid)idBanda;
+            }
+            
 
             foreach (var item in album.Musica)
             {

@@ -5,9 +5,9 @@ namespace SpotifyMs.Domain.Streaming.Aggregates
 {
     public class Musica
     {
-        public Guid Id { get; private set; }
-        public String Nome { get; private set; }
-        public Duracao Duracao { get; private set; }
+        public Guid Id { get; set; }
+        public String Nome { get; set; }
+        public Duracao Duracao { get; set; }
 
         //exemplo de relação n x n musica e playlist
         public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();
@@ -27,3 +27,9 @@ namespace SpotifyMs.Domain.Streaming.Aggregates
 
     }
 }
+
+        /*Retornei os atributos para escrita publica, defido a erro na associação de ambum a banda.  private set;   para set*/
+		
+		/*construtor Musica Criar  \BandaService.cs quando criou banca  esta chamando esse contrutor que alimenta o Id 
+		 e na hora da gravação do ambum, o EF tentou fazer update na musica ao inves de fazer insert,  mantendo o construtor 
+		 devido ao uso no teste unitario*/
