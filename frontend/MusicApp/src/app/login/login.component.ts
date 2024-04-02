@@ -4,8 +4,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { UsuarioService } from '../services/usuario.service';
-import { Usuario } from '../model/usuario';
+import { LoginService } from '../services/login.service';
+import { Login } from '../model/login';
 import { Router } from '@angular/router';
 
 
@@ -20,9 +20,9 @@ export class LoginComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
   senha = new FormControl('', [Validators.required]);
   errorMessage = '';
-  usuario!: Usuario;
+  usuario!: Login;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {
+  constructor(private LoginService: LoginService, private router: Router) {
 
   }
 
@@ -34,7 +34,7 @@ export class LoginComponent {
     let emailValue = this.email.getRawValue() as String;
     let senhaValue = this.senha.getRawValue() as String;
 
-    this.usuarioService.autenticar(emailValue, senhaValue).subscribe(
+    this.LoginService.autenticar(emailValue, senhaValue).subscribe(
       {
         next: (response) => {
           this.usuario = response;
@@ -49,6 +49,10 @@ export class LoginComponent {
       });
 
 
+  }
+
+  public criarConta() {
+    this.router.navigate(["conta"]);
   }
 
 
