@@ -4,8 +4,6 @@ namespace SpotifyMS.Repository.Repository
 {
     public class UsuarioRepository : RepositoryBase<Usuario>
     {
-        public SpotifyMSContext Context { get; set; }
-
         public UsuarioRepository(SpotifyMSContext context) : base(context)
         {
             Context = context;

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SpotifyMs.Domain.Conta.Agreggates;
+using SpotifyMs.Domain.Streaming.Aggregates;
+using System.ComponentModel.DataAnnotations;
 
 namespace SpotifyMs.Aplication.Streaming.Dto
 {
@@ -11,16 +13,27 @@ namespace SpotifyMs.Aplication.Streaming.Dto
 
         [Required]
         public string Nome { get; set; }
-        public List<MusicDto> Musicas { get; set; } = new List<MusicDto>();
+        public List<MusicaDto> Musicas { get; set; } = new List<MusicaDto>();
 
     }
+   
 
-
-    public class MusicDto
+    public class MusicaDto
     {
         public Guid Id { get; set; }
         public String Nome { get; set; }
         public int Duracao { get; set; }
 
     }
+
+    public class PlaylistDto
+    {
+       public Guid PlaylistId { get; set; }
+        /*public string Nome { get; set; }
+        public Boolean Publica { get; set; }   
+        public Guid UsuarioId { get; set; }
+        */
+        public List<MusicaDto> Musicas { get; set; } = new List<MusicaDto>();
+    }
 }
+

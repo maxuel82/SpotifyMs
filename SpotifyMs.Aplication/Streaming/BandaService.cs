@@ -2,11 +2,6 @@
 using SpotifyMs.Aplication.Streaming.Dto;
 using SpotifyMs.Domain.Streaming.Aggregates;
 using SpotifyMS.Repository.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyMs.Aplication.Streaming
 {
@@ -110,7 +105,7 @@ namespace SpotifyMs.Aplication.Streaming
                 Nome = dto.Nome
             };
 
-            foreach (MusicDto item in dto.Musicas)
+            foreach (MusicaDto item in dto.Musicas)
             {
                  album.AdicionarMusica(new Musica
                 {
@@ -138,7 +133,7 @@ namespace SpotifyMs.Aplication.Streaming
 
             foreach (var item in album.Musica)
             {
-                var musicaDto = new MusicDto()
+                var musicaDto = new MusicaDto()
                 {
                     Id = item.Id,
                     Duracao = item.Duracao.Valor,

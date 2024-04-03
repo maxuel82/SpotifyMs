@@ -11,6 +11,9 @@ namespace SpotifyMs.Domain.Conta.Agreggates
         public virtual IList<Musica> Musicas { get; set; }
         public DateTime DtCriacao { get; set; }
 
+        public void AdicionarMusica(Musica musica) =>
+            this.Musicas.Add(musica);
+
     }
 }
 
