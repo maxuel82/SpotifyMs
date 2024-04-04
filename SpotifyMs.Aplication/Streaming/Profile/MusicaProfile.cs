@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpotifyMs.Aplication.Streaming.Profile
 {
-      public class MusicaProfile : AutoMapper.Profile
+    public class MusicaProfile : AutoMapper.Profile
     {
         public MusicaProfile()
         {

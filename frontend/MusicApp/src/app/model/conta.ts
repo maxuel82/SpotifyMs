@@ -1,7 +1,7 @@
 
 // conta.ts 1º model
 export interface Usuario {
-    //id: string;
+    id?: string;
     nome: string;
     email: string;
     senha: string;

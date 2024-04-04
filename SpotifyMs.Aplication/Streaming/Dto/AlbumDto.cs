@@ -28,12 +28,11 @@ namespace SpotifyMs.Aplication.Streaming.Dto
 
     public class PlaylistDto
     {
-       public Guid PlaylistId { get; set; }
-        /*public string Nome { get; set; }
-        public Boolean Publica { get; set; }   
-        public Guid UsuarioId { get; set; }
-        */
-        public List<MusicaDto> Musicas { get; set; } = new List<MusicaDto>();
+       public Guid Id { get; set; }
+       public string Nome { get; set; }
+       public Boolean Publica { get; set; }   
+       public Guid UsuarioId { get; set; }      
+       public List<MusicaDto> Musicas { get; set; } = new List<MusicaDto>();
     }
 }
 

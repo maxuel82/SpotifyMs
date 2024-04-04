@@ -3,40 +3,40 @@ using SpotifyMs.Aplication.Streaming.Dto;
 using SpotifyMs.Domain.Conta.Agreggates;
 using SpotifyMs.Domain.Streaming.Aggregates;
 using SpotifyMS.Repository.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 
 namespace SpotifyMs.Aplication.Streaming
 {
     public class PlaylistService
     {
-        private PlaylistRepository PlaylistRepository { get; set; }
-
         private IMapper Mapper { get; set; }
+        private PlaylistRepository _playlistRepository { get; set; }
+        private UsuarioRepository _usuarioRepository { get; set; }
+        
+        private MusicaRepository _musicaRepository { get; set; }
 
 
-        public PlaylistService(PlaylistRepository playlistRepository, IMapper mapper)
+        public PlaylistService(IMapper mapper, PlaylistRepository playlistRepository, UsuarioRepository usuarioRepository
+            , MusicaRepository musicaRepository)
         {
-            PlaylistRepository = playlistRepository;
+            _playlistRepository = playlistRepository;
+            _usuarioRepository = usuarioRepository;
+            _musicaRepository = musicaRepository;
 
             Mapper = mapper;
         }
 
-
+        
         public IEnumerable<PlaylistDto> GetAll()
         {
-            var playlist = this.PlaylistRepository.GetAll();
+            var playlist = this._playlistRepository.GetAll();
             return this.Mapper.Map<IEnumerable<PlaylistDto>>(playlist);
-        }
-
+        }        
 
 
         public PlaylistDto AssociarMusicaAPlaylist(PlaylistDto dto)
         {
-            var playlist = this.PlaylistRepository.GetById(dto.PlaylistId);
+            var playlist = this._playlistRepository.GetById(dto.Id);
 
             if (playlist == null)
             {
@@ -45,7 +45,7 @@ namespace SpotifyMs.Aplication.Streaming
 
             this.playlistDtoParaplaylist(playlist, dto);
                        
-            this.PlaylistRepository.Update(playlist);
+            this._playlistRepository.Update(playlist);
 
             var result = this.PlaylistParaplaylistDto(playlist);
 
@@ -69,7 +69,7 @@ namespace SpotifyMs.Aplication.Streaming
         private PlaylistDto PlaylistParaplaylistDto(Playlist playlist)
         {
             PlaylistDto dto = new PlaylistDto();
-            dto.PlaylistId = playlist.Id;
+            dto.Id = playlist.Id;
 
             foreach (var item in playlist.Musicas)
             {
@@ -85,7 +85,33 @@ namespace SpotifyMs.Aplication.Streaming
 
             return dto;
         }
+
         ///
+
+        public PlaylistDto FavoritarMusica(Guid usuarioId, Guid musicaId)
+        {
+            var usuario = this._usuarioRepository.GetById(usuarioId);
+
+            if (usuario == null)
+                throw new Exception("Não foi encontrada o Usuario");
+
+            var playlistFavorita = usuario.FindPlaylistFavorita();
+
+            if (playlistFavorita == null)
+                throw new Exception("Não foi encontrada a referencia da PlayList Favorita");
+
+            var musica = this._musicaRepository.GetById(musicaId);
+
+            if (musica == null)
+                throw new Exception("Não foi encontrada a referencia da musica");
+
+            playlistFavorita.AdicionarMusica(musica);
+
+            this._playlistRepository.Update(playlistFavorita);         
+
+            var result = this.Mapper.Map<PlaylistDto>(playlistFavorita);
+           return result;
+        }
 
         ///
 

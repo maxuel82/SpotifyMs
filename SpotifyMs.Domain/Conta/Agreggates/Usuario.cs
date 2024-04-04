@@ -4,8 +4,6 @@ using SpotifyMs.Domain.Streaming.Aggregates;
 using SpotifyMs.Domain.Transacao.Agreggates;
 using SpotifyMs.Domain.Transacao.ValueObject;
 using SpotifyMS.Domain.Core.Extension;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace SpotifyMs.Domain.Conta.Agreggates
 {
@@ -107,6 +105,12 @@ namespace SpotifyMs.Domain.Conta.Agreggates
         private String CriptografarSenha(string senhaAberta)
         {
             return senhaAberta.HashSHA256();
+        }
+
+
+        public Playlist FindPlaylistFavorita()
+        {
+            return Playlists.FirstOrDefault(p => p.Nome == PLAYLIST_FAVORITAS);
         }
     }
 }

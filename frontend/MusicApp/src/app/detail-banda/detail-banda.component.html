@@ -12,6 +12,8 @@
                Album: {{album.nome}}
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p *ngFor="let music of album.musicas">Musica: {{music.nome}}</p>
+        <div *ngFor="let music of album.musicas">
+         <p>Musica: {{music.nome}} <mat-slide-toggle (change)="FavoritarMusica($event, music)">Favoritar </mat-slide-toggle></p>                         
+        </div>
     </mat-expansion-panel>
 </mat-accordion>
