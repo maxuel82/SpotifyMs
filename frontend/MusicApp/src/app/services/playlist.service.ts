@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MusicaFavoritaUsuario } from '../model/album';
+import { MusicaFavoritaUsuario, Playlist } from '../model/album';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +14,9 @@ export class PlaylistService {
 
   constructor(private http: HttpClient) { }
 
-  public FavoritarMusica(usuarioId:String, musicaId: String) : Observable<MusicaFavoritaUsuario> {
-    let headers = new HttpHeaders({'Content-Type': 'application/json'});
-    
-    return this.http.post<MusicaFavoritaUsuario>(`${this.url}/FavoritarMusica`, {
-      usuarioId:usuarioId,
-      musicaId:musicaId
-    }, { headers: headers });
+  public FavoritarMusica(usuarioId:String, musicaId: String) : Observable<Playlist> {  
+      return this.http.post<Playlist>(`${this.url}/FavoritarMusica`, { usuarioId:usuarioId,   musicaId:musicaId}
+      );
   }
  
 }

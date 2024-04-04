@@ -6,7 +6,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { Banda } from '../model/banda';
 import { BandaService } from '../services/banda.service';
-import { Album, Musica } from '../model/album';
+import { Album, Musica, Playlist } from '../model/album';
 
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../services/login.service';
@@ -21,15 +21,16 @@ import { PlaylistService } from '../services/playlist.service';
   styleUrl: './detail-banda.component.css'
 })
 export class DetailBandaComponent implements OnInit {
-
+  errorMessage = '';
   idBanda = '';
   banda!:Banda;
   albuns!:Album[];
-      
-  constructor(private route: ActivatedRoute, private bandaService: BandaService, private loginService: LoginService, private playlistService :PlaylistService) {  }
+  playlist!: Playlist;
+
+  constructor(private router: ActivatedRoute, private bandaService: BandaService, private loginService: LoginService, private playlistService :PlaylistService) {  }
   
   ngOnInit(): void {
-    this.idBanda = this.route.snapshot.params["id"];  
+    this.idBanda = this.router.snapshot.params["id"];  
 
     this.bandaService.getBandaPorId(this.idBanda).subscribe(response => {
       this.banda = response;
@@ -50,7 +51,18 @@ export class DetailBandaComponent implements OnInit {
     const usuario = this.loginService.getUsuarioLogado();
 
     if (usuario && usuario.id && item && item.id) {
-      this.playlistService.FavoritarMusica(usuario.id, item.id);
+      this.playlistService.FavoritarMusica(usuario.id, item.id).subscribe(
+        {
+          next: (response) => {
+            this.playlist = response;            
+          },
+          error: (e) => {
+            if (e.error) {
+              this.errorMessage = e.error.error;
+            }
+          }
+        });
+  
     } else {
       console.error('Usuário ou item não estão definidos ou não possuem IDs.');
     }
