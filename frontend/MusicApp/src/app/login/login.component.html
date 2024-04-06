@@ -1,4 +1,4 @@
-<div class="example-container" style="margin-left: 15px;">
+<div  class="example-container" style="margin-left: 15px;">
     <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
     <mat-form-field>
       <mat-label>Email</mat-label>
@@ -20,5 +20,5 @@
     </mat-form-field>
     <br />
     <button mat-raised-button color="primary" (click)="login();">Login</button>
-    <p>Não tem uma conta? <a (click)="criarConta()">Cadastre-se</a></p>
+    <button mat-raised-button type="link" (click)="criarConta();">Registre sua conta!</button>
 </div>

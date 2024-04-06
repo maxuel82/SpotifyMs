@@ -1,5 +1,5 @@
 <!-- Seu componente template (cadastro-conta.component.html) -->
-<div>
+<div  class="example-container" style="margin-left: 25px;">
   <h2>Cadastrar Conta</h2>
   
   <div *ngIf="mensagem" class="alert alert-success">
@@ -11,42 +11,42 @@
       <label for="nome">Nome:</label>
       <input type="text" name="nome" id="nome" class="form-control" [(ngModel)]="usuario.nome" required>
     </div>
-
+    <br>
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" name="email" id="email"  class="form-control" [(ngModel)]="usuario.email" required>
     </div>
-
+    <br>
     <div class="form-group">
       <label for="senha">Senha:</label>
       <input type="password" name="senha" id="senha" class="form-control" [(ngModel)]="usuario.senha" required>
     </div>
-
+    <br>
     <div class="form-group">
       <label for="dtNascimento">Data de Nascimento:</label>
       <input type="date" name="dtNascimento" id="dtNascimento" class="form-control" [(ngModel)]="usuario.dtNascimento" required>
     </div>
-
+    <br>
     <div class="form-group">
       <label for="planoId">Plano ID:</label>
       <input type="text"  name="planoId" id="planoId" class="form-control" [(ngModel)]="usuario.planoId" required>
     </div>
-
+    <br>
     <div class="form-group">
       <label for="cartaoAtivo">Cartão Ativo:</label>
       <input type="checkbox" name="cartaoAtivo" id="cartaoAtivo" class="form-control" [(ngModel)]="usuario.cartao.ativo">
     </div>
-
+    <br>
     <div class="form-group">
       <label for="cartaoLimite">Limite do Cartão:</label>
       <input type="number" name="cartaoLimite" id="cartaoLimite" class="form-control" [(ngModel)]="usuario.cartao.limite">
     </div>
-
+    <br>
     <div class="form-group">
       <label for="cartaoNumero">Número do Cartão:</label>
       <input type="text"  name="cartaoNumero" id="cartaoNumero" class="form-control" [(ngModel)]="usuario.cartao.numero">
     </div>
-
+    <br>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
   </form>
 </div>
