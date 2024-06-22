@@ -4,6 +4,7 @@ using SpotifyMs.Domain.Conta.Agreggates;
 using SpotifyMs.Domain.Notificacao;
 using SpotifyMs.Domain.Streaming.Aggregates;
 using SpotifyMs.Domain.Transacao.Agreggates;
+using SpotifyMS.Domain.Admin.Aggregates;
 
 
 
@@ -21,6 +22,7 @@ namespace SpotifyMS.Repository
         public DbSet<Album> Albuns { get; set; }
         public DbSet<Musica> Musicas { get; set; }
         public DbSet<Plano> Planos { get; set; }
+        public DbSet<UsuarioAdmin> UsuarioAdmins { get; set; }
         public SpotifyMSContext(DbContextOptions<SpotifyMSContext> options) : base(options)
         {
 
