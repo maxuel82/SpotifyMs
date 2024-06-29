@@ -27,7 +27,7 @@ namespace SpotifyMs.STS
                     },
                     Scopes =
                     {
-                        "SpotifyMsScope"
+                        "SpotifyLikeScope"
                     }
                 }
             };
