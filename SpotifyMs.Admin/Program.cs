@@ -3,6 +3,7 @@ using SpotifyMs.Aplication.Admin.Profile;
 using SpotifyMs.Aplication.Admin;
 using SpotifyMS.Repository;
 using SpotifyMS.Repository.Repository;
+using SpotifyMs.Aplication.Streaming;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,13 @@ builder.Services.AddAutoMapper(typeof(UsuarioAdminProfile).Assembly);
 
 builder.Services.AddScoped<UsuarioAdminRepository>();
 builder.Services.AddScoped<UsuarioAdminService>();
+
+builder.Services.AddScoped<BandaRepository>();
+builder.Services.AddScoped<BandaService>();
+
+builder.Services.AddScoped<MusicaRepository>();
+builder.Services.AddScoped<MusicaService>();
+
 
 var app = builder.Build();
 
