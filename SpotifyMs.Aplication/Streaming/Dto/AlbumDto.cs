@@ -24,6 +24,7 @@ namespace SpotifyMs.Aplication.Streaming.Dto
         public String Nome { get; set; }
         public int Duracao { get; set; }
 
+        public Guid AlbumId { get; set; }       
     }
 
     public class PlaylistDto

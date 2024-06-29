@@ -19,6 +19,7 @@ namespace SpotifyMS.Repository.Mapping.Streaming
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.AlbumId);           
 
             //mapeando coluna com converso classe duração.  ond d=duração  c=configuração
             builder.OwnsOne<Duracao>(d => d.Duracao, c =>

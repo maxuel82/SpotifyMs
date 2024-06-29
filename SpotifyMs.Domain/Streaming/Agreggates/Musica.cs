@@ -8,6 +8,7 @@ namespace SpotifyMs.Domain.Streaming.Aggregates
         public Guid Id { get; set; }
         public String Nome { get; set; }
         public Duracao Duracao { get; set; }
+        public Guid AlbumId { get; set; }
 
         //exemplo de relação n x n musica e playlist
         public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();

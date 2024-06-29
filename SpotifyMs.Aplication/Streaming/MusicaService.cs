@@ -33,6 +33,15 @@ namespace SpotifyMs.Aplication.Streaming
             var musica = this.MusicaRepository.Buscar(nome);
             return this.Mapper.Map<IEnumerable<MusicaDto>>(musica);
         }
+
+        public MusicaDto Criar(MusicaDto dto)
+        {
+            Musica musica = this.Mapper.Map<Musica>(dto);
+            this.MusicaRepository.Save(musica);
+
+            return this.Mapper.Map<MusicaDto>(musica);
+        }
+
     }
 }
 
