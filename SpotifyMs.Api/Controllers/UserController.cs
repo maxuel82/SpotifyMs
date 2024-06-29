@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpotifyLike.Api.Controllers.Request;
 using SpotifyMs.Aplication.Conta;
 using SpotifyMs.Aplication.Conta.Dto;
@@ -7,6 +8,8 @@ namespace SpotifyMs.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+    [Authorize(Roles = "spotifylike-user")]
     public class UserController : ControllerBase
     {
         private UsuarioService _usuarioService;

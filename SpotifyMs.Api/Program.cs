@@ -1,4 +1,6 @@
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using SpotifyMs.Aplication.Conta;
 using SpotifyMs.Aplication.Conta.Profile;
 using SpotifyMs.Aplication.Streaming;
@@ -12,8 +14,34 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
+    {
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+        Description = "Adicione o token JWT para fazer as requisições na APIs",
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+
+});
 builder.Services.AddDbContext<SpotifyMSContext>(c =>
 {
     c.UseLazyLoadingProxies()
@@ -24,6 +52,22 @@ builder.Services.AddDbContext<SpotifyMSContext>(c =>
 /*Injeção de dependencia.*/
 builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
 
+builder.Services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "https://localhost:7081";
+                    options.ApiName = "spotifyLike-api";
+                    options.ApiSecret = "SpolitifyLikeSecret";
+                    options.RequireHttpsMetadata = true;
+                });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("spotifylike-role-user", p =>
+    {
+        p.RequireClaim("role", "spotifylike-user");
+    });
+});
 
 /*Repositories*/
 builder.Services.AddScoped<UsuarioRepository>();
@@ -50,7 +94,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 
