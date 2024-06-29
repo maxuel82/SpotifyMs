@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpotifyMs.Aplication.Admin;
+using SpotifyMs.Aplication.Admin.Dto;
 
 namespace SpotifyMs.Admin.Controllers
 {
@@ -17,5 +19,21 @@ namespace SpotifyMs.Admin.Controllers
             var result = this.usuarioAdminService.ObterTodos();
             return View(result);
         }
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Salvar(UsuarioAdminDto dto)
+        {
+            if (ModelState.IsValid == false)
+                return View("Criar");
+
+            this.usuarioAdminService.Salvar(dto);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

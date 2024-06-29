@@ -18,8 +18,8 @@ namespace SpotifyMs.Aplication.Admin.Dto
         [EmailAddress(ErrorMessage = "Campo Email não está em um formato correto")]
         public String Email { get; set; }
 
-        [Required(ErrorMessage = "Campo Password é obrigatório")]
-        public String Password { get; set; }
+        [Required(ErrorMessage = "Campo Senha é obrigatório")]
+        public String Senha { get; set; }
 
         [Required(ErrorMessage = "Campo Perfil é obrigatório")]
         public int? Perfil { get; set; }

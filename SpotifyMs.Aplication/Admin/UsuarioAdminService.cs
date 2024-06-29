@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SpotifyMs.Aplication.Admin.Dto;
+using SpotifyMS.Domain.Admin.Aggregates;
 using SpotifyMS.Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -24,5 +25,13 @@ namespace SpotifyMs.Aplication.Admin
             var result = this.Repository.GetAll();
             return this.mapper.Map<IEnumerable<UsuarioAdminDto>>(result);
         }
+
+        public void Salvar(UsuarioAdminDto dto)
+        {
+            var usuario = this.mapper.Map<UsuarioAdmin>(dto);
+            usuario.CriptografarSenha();
+            this.Repository.Save(usuario);
+        }
+
     }
 }

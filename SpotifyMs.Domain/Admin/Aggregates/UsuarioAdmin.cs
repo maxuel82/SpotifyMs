@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpotifyMS.Domain.Core.Extension;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,10 @@ namespace SpotifyMS.Domain.Admin.Aggregates
         public String Email { get; set; }
         public String Senha { get; set; }
         public Perfil Perfil { get; set; }
+
+        public void CriptografarSenha()
+        {
+            this.Senha = this.Senha.HashSHA256();
+        }
     }
 }
