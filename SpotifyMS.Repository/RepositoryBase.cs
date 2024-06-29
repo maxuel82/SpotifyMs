@@ -1,12 +1,13 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace SpotifyMS.Repository
 {
     public abstract class RepositoryBase<T> where T : class, new()
     {
-        protected SpotifyMSContext Context { get; set; }
+        protected DbContext Context { get; set; }
 
-        public RepositoryBase(SpotifyMSContext context)
+        public RepositoryBase(DbContext context)
         {
             Context = context;
         }

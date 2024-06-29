@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using SpotifyMs.Aplication.Admin.Profile;
+using SpotifyMs.Aplication.Admin;
 using SpotifyMS.Repository;
+using SpotifyMS.Repository.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,11 @@ builder.Services.AddDbContext<SpotifyMSContext>(c =>
     c.UseLazyLoadingProxies()
      .UseSqlServer(builder.Configuration.GetConnectionString("SpotifyConnection"));
 });
+
+builder.Services.AddAutoMapper(typeof(UsuarioAdminProfile).Assembly);
+
+builder.Services.AddScoped<UsuarioAdminRepository>();
+builder.Services.AddScoped<UsuarioAdminService>();
 
 var app = builder.Build();
 

@@ -10,6 +10,7 @@ namespace SpotifyMS.Repository.Repository
 {
     public class UsuarioAdminRepository : RepositoryBase<UsuarioAdmin>
     {
+        //nessa implementação foi utilizado mesmo contexto da api.
         public UsuarioAdminRepository(SpotifyMSContext context) : base(context)
         {
 
