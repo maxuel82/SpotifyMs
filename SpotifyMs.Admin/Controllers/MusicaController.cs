@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpotifyMs.Aplication.Streaming;
 using SpotifyMs.Aplication.Streaming.Dto;
 
 namespace SpotifyMs.Admin.Controllers
 {
+    [Authorize]
     public class MusicaController : Controller
     {
         private MusicaService musicaService;

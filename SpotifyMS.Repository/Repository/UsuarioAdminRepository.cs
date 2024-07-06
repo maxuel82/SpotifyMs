@@ -12,8 +12,13 @@ namespace SpotifyMS.Repository.Repository
     {
         //nessa implementação foi utilizado mesmo contexto da api.
         public UsuarioAdminRepository(SpotifyMSContext context) : base(context)
-        {
+        { 
+        
+        }
 
+        public UsuarioAdmin GetUsuarioAdminByEmailAndPassword(string email, string senha)
+        {
+            return this.Find(x => x.Email == email && x.Senha == senha).FirstOrDefault();  
         }
     }
 }

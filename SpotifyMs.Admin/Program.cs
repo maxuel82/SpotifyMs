@@ -4,6 +4,7 @@ using SpotifyMs.Aplication.Admin;
 using SpotifyMS.Repository;
 using SpotifyMS.Repository.Repository;
 using SpotifyMs.Aplication.Streaming;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,11 @@ builder.Services.AddScoped<BandaService>();
 builder.Services.AddScoped<MusicaRepository>();
 builder.Services.AddScoped<MusicaService>();
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie();
+
 
 var app = builder.Build();
 
@@ -42,6 +48,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SpotifyMs.Aplication.Admin.Dto;
 using SpotifyMS.Domain.Admin.Aggregates;
+using SpotifyMS.Domain.Core.Extension;
 using SpotifyMS.Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -33,5 +34,11 @@ namespace SpotifyMs.Aplication.Admin
             this.Repository.Save(usuario);
         }
 
+        public UsuarioAdmin Authenticate(string email, string password)
+        {
+            var passwordCipher = password.HashSHA256();
+            var user = this.Repository.GetUsuarioAdminByEmailAndPassword(email, passwordCipher);
+            return user;
+        }
     }
 }

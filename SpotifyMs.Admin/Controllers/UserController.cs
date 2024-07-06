@@ -5,6 +5,7 @@ using SpotifyMs.Aplication.Admin.Dto;
 
 namespace SpotifyMs.Admin.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private UsuarioAdminService usuarioAdminService;
@@ -19,12 +20,15 @@ namespace SpotifyMs.Admin.Controllers
             var result = this.usuarioAdminService.ObterTodos();
             return View(result);
         }
+        
+        [AllowAnonymous]
         public IActionResult Criar()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Salvar(UsuarioAdminDto dto)
         {
             if (ModelState.IsValid == false)
@@ -34,6 +38,5 @@ namespace SpotifyMs.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
     }
 }
