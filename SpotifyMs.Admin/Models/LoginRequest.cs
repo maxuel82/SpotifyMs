@@ -8,6 +8,7 @@ namespace SpotifyMs.Admin.Models
         public String Email { get; set; }
 
         [Required(ErrorMessage = "Campo Senha é obrigatório")]
+        [DataType(DataType.Password)]
         public String Senha { get; set; }
     }
 }
