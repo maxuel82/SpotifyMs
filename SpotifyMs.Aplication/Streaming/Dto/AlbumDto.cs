@@ -21,9 +21,14 @@ namespace SpotifyMs.Aplication.Streaming.Dto
     public class MusicaDto
     {
         public Guid Id { get; set; }
+        
+        [Required(ErrorMessage = "Campo Nome é obrigatório")]
         public String Nome { get; set; }
+        
+        [Required(ErrorMessage = "Campo Duracao é obrigatório")]
         public int Duracao { get; set; }
-
+        
+        [Required(ErrorMessage = "Campo AlbumId é obrigatório")]
         public Guid AlbumId { get; set; }       
     }
 
