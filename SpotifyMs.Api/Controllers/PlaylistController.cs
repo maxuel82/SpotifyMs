@@ -9,7 +9,7 @@ namespace SpotifyMs.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    [Authorize(Roles = "spotifylike-user")]
+    [Authorize(Roles = "SpotifyMs-user")]
     public class PlaylistController : Controller
     {
         

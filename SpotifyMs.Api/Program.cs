@@ -55,9 +55,9 @@ builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
 builder.Services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = "https://localhost:7081";
-                    options.ApiName = "spotifyLike-api";
-                    options.ApiSecret = "SpolitifyLikeSecret";
+                    options.Authority = "https://localhost:7108";
+                    options.ApiName = "SpotifyMs-api";
+                    options.ApiSecret = "SpotifyMsSecret";
                     options.RequireHttpsMetadata = true;
                 });
 
@@ -65,7 +65,7 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("spotifylike-role-user", p =>
     {
-        p.RequireClaim("role", "spotifylike-user");
+        p.RequireClaim("role", "SpotifyMs-user");
     });
 });
 
