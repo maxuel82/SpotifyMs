@@ -48,8 +48,8 @@ builder.Services.AddDbContext<SpotifyMSContext>(c =>
      .UseSqlServer(builder.Configuration.GetConnectionString("SpotifyConnection"));
 });
 
-// conection string local apsetings.jason
-// "SpotifyConnection": "Data Source=(LocalDB)\\MSSQLLocalDB;Integrated Security=True; Initial Catalog=SpotifyMsDatabase"
+/// conection string local apsetings.jason
+/// "SpotifyConnection": "Data Source=(LocalDB)\\MSSQLLocalDB;Integrated Security=True; Initial Catalog=SpotifyMsDatabase"
 
 /*Injeção de dependencia.*/
 builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
