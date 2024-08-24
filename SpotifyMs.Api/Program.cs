@@ -103,3 +103,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//Tentativa publicação azure web app - spotify-ms-api2  v5
