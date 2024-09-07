@@ -77,12 +77,17 @@ builder.Services.AddScoped<PlanoRepository>();
 builder.Services.AddScoped<BandaRepository>();
 builder.Services.AddScoped<MusicaRepository>();
 builder.Services.AddScoped<PlaylistRepository>();
+//banco nosql
+builder.Services.AddScoped<BandaCosmoRepository>();
+
 
 /*Services*/
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<BandaService>();
 builder.Services.AddScoped<MusicaService>();
 builder.Services.AddScoped<PlaylistService>();
+//banco nosql
+builder.Services.AddScoped<BandaCosmoService>(); 
 
 
 var app = builder.Build();
