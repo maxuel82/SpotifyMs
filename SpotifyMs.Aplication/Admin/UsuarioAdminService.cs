@@ -3,11 +3,6 @@ using SpotifyMs.Aplication.Admin.Dto;
 using SpotifyMS.Domain.Admin.Aggregates;
 using SpotifyMS.Domain.Core.Extension;
 using SpotifyMS.Repository.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotifyMs.Aplication.Admin
 {

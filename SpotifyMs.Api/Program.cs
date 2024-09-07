@@ -1,6 +1,7 @@
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using SpotifyMs.Aplication.Admin;
 using SpotifyMs.Aplication.Conta;
 using SpotifyMs.Aplication.Conta.Profile;
 using SpotifyMs.Aplication.Streaming;
@@ -48,8 +49,8 @@ builder.Services.AddDbContext<SpotifyMSContext>(c =>
      .UseSqlServer(builder.Configuration.GetConnectionString("SpotifyConnection"));
 });
 
-// conection string local apsetings.jason
-// "SpotifyConnection": "Data Source=(LocalDB)\\MSSQLLocalDB;Integrated Security=True; Initial Catalog=SpotifyMsDatabase"
+/* conection string local apsetings.jason
+/* "SpotifyConnection": "Data Source=(LocalDB)\\MSSQLLocalDB;Integrated Security=True; Initial Catalog=SpotifyMsDatabase"
 
 /*Injeção de dependencia.*/
 builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
@@ -77,22 +78,31 @@ builder.Services.AddScoped<PlanoRepository>();
 builder.Services.AddScoped<BandaRepository>();
 builder.Services.AddScoped<MusicaRepository>();
 builder.Services.AddScoped<PlaylistRepository>();
+builder.Services.AddScoped<SegredoRepository>();
+
+//banco nosql cosmo db azure
+builder.Services.AddScoped<BandaCosmoRepository>();
+
 
 /*Services*/
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<BandaService>();
 builder.Services.AddScoped<MusicaService>();
 builder.Services.AddScoped<PlaylistService>();
+builder.Services.AddScoped<SegredoService>();
+
+//banco nosql cosmo db azure
+builder.Services.AddScoped<BandaCosmoService>(); 
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseHttpsRedirection();
 
@@ -103,3 +113,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//Tentativa publicação azure web app - spotify-ms-api2  v5
