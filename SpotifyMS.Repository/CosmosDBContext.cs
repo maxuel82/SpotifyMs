@@ -6,7 +6,7 @@ using System;
 namespace SpotifyMS.Repository
 {
     public class CosmosDBContext
-    {    
+    {
         private CosmosClient client { get; set; }
         private SegredoRepository _segredoRepository { get; set; }
 
@@ -31,7 +31,7 @@ namespace SpotifyMS.Repository
             //foi criada uma tabela de segredos no banco que só é acessada apos a autenticação via token.
             this.AccountEndpoint = segredoEndPoint.Valor;
             this.TokenCredential = segredoToken.Valor;
-                                    
+
             this.client = new CosmosClient(AccountEndpoint, TokenCredential);          
             this.Database = this.client.GetDatabase(this.DatabaseName);
         }

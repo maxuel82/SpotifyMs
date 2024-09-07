@@ -84,6 +84,7 @@ builder.Services.AddScoped<SegredoRepository>();
 builder.Services.AddScoped<BandaCosmoRepository>();
 
 
+
 /*Services*/
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<BandaService>();
@@ -114,4 +115,4 @@ app.MapControllers();
 
 app.Run();
 
-//Tentativa publicação azure web app - spotify-ms-api2  v5
+//Tentativa publicação azure web app - spotify-ms-api2  v6
