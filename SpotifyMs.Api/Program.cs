@@ -115,4 +115,4 @@ app.MapControllers();
 
 app.Run();
 
-//Tentativa publicação azure web app - spotify-ms-api2  v6
+//Tentativa publicação azure web app - spotify-ms-api2  v8  testar acesso token
