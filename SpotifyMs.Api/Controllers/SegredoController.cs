@@ -7,7 +7,7 @@ namespace SpotifyMs.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "SpotifyMs-user")]
+    //[Authorize(Roles = "SpotifyMs-user")]
     public class SegredoController : ControllerBase
     {
         private SegredoService _segredoService;

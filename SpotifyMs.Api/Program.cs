@@ -5,6 +5,7 @@ using SpotifyMs.Aplication.Admin;
 using SpotifyMs.Aplication.Conta;
 using SpotifyMs.Aplication.Conta.Profile;
 using SpotifyMs.Aplication.Streaming;
+using SpotifyMs.Aplication.Streaming.Storage;
 using SpotifyMS.Repository;
 using SpotifyMS.Repository.Repository;
 
@@ -95,6 +96,8 @@ builder.Services.AddScoped<SegredoService>();
 //banco nosql cosmo db azure
 builder.Services.AddScoped<BandaCosmoService>(); 
 
+//azure storage Account
+builder.Services.AddScoped<AzureStorageAccount>();
 
 var app = builder.Build();
 
@@ -115,4 +118,4 @@ app.MapControllers();
 
 app.Run();
 
-//Tentativa publicação azure web app - spotify-ms-api2  v8  testar acesso token
+//Tentativa publicação azure web app - spotify-ms-api2  v9   subindo storage account
