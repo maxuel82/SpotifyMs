@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 using SpotifyMs.Aplication.Streaming;
 using SpotifyMs.Aplication.Streaming.Dto;
 
@@ -7,7 +8,7 @@ namespace SpotifyMs.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "SpotifyMs-user")]
+    //[Authorize(Roles = "SpotifyMs-user")]
     public class BandaController : ControllerBase
     {
         private BandaService _bandaService;
@@ -50,6 +51,44 @@ namespace SpotifyMs.Api.Controllers
             return Created($"/banda/{result.Id}", result);
         }
 
+        [HttpPut]
+        public IActionResult Update([FromBody] BandaDto bandaDto)
+        {
+            try
+            {
+                var result = this._bandaService.Update(bandaDto);
+                return Created($"/banda/{result.Id}", result);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(); // Se o registro não foi encontrado, retorna 404.
+            }
+            catch (Exception ex)
+            {
+                // Lidar com outras exceções se necessário
+                return StatusCode(500, "Ocorreu um erro interno.");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                this._bandaService.Delete(id);
+                return NoContent(); // Retorna 204 No Content, indicando que a operação foi bem-sucedida.
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(); // Se o registro não foi encontrado, retorna 404.
+            }
+            catch (Exception ex)
+            {
+                // Lidar com outras exceções se necessário
+                return StatusCode(500, "Ocorreu um erro interno.");
+            }
+        }
+
         [HttpPost("{id}/albums")]
         public IActionResult AssociarAlbum(AlbumDto dto)
         {
@@ -61,7 +100,6 @@ namespace SpotifyMs.Api.Controllers
             return Created($"/banda/{result.BandaId}/albums/{result.Id}", result);
 
         }
-
 
         [HttpGet("{idBanda}/albums/{id}")]
         public IActionResult ObterAlbumPorId(Guid idBanda, Guid id)

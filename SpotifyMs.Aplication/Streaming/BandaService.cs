@@ -37,6 +37,34 @@ namespace SpotifyMs.Aplication.Streaming
             return this.Mapper.Map<IEnumerable<BandaDto>>(banda);
         }
 
+        public BandaDto Update(BandaDto bandaDto)
+        {
+            var banda = this.BandaRepository.GetById(bandaDto.Id); // Usa o id do DTO
+
+            if (banda == null)
+            {
+                throw new KeyNotFoundException("Banda não encontrada.");
+            }
+
+            // Mapeia as alterações do DTO para a entidade
+            this.Mapper.Map(bandaDto, banda);
+
+            this.BandaRepository.Update(banda); // Chama o repositório para aplicar a atualização
+            return this.Mapper.Map(banda, bandaDto);
+        }
+
+        public void Delete(Guid id)
+        {
+            var banda = this.BandaRepository.GetById(id);
+
+            if (banda == null)
+            {
+                throw new KeyNotFoundException("Banda não encontrada.");
+            }
+
+            this.BandaRepository.Delete(banda);
+        }
+
         public AlbumDto AssociarAlbum(AlbumDto dto)
         {
             var banda = this.BandaRepository.GetById(dto.BandaId);
