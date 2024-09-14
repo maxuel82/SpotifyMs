@@ -100,6 +100,9 @@ builder.Services.AddScoped<BandaCosmoService>();
 builder.Services.AddScoped<AzureStorageAccount>();
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
 
+builder.Services.AddScoped<AzureServiceBusService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
