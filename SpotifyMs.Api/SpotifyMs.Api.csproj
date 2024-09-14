@@ -5,10 +5,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
+    <ApplicationInsightsResourceId>/subscriptions/cdf064ed-3022-483e-a0af-a412f76aafc8/resourceGroups/Aula-Rafael-nuvem/providers/microsoft.insights/components/spotify-ms-api2</ApplicationInsightsResourceId>
+    <UserSecretsId>fbaec8f0-367c-4d92-a2d0-bb24433cd265</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.3">
       <PrivateAssets>all</PrivateAssets>

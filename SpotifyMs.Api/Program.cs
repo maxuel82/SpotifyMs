@@ -98,6 +98,7 @@ builder.Services.AddScoped<BandaCosmoService>();
 
 //azure storage Account
 builder.Services.AddScoped<AzureStorageAccount>();
+builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
 
 var app = builder.Build();
 
