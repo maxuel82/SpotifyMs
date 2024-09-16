@@ -52,8 +52,14 @@ namespace SpotifyMs.Aplication.Conta
             this.UsuarioRepository.Save(usuario);
             var result = this.Mapper.Map<UsuarioDto>(usuario);
 
-            //Notificar o usuário
-            Notificacao notificacao = Notificacao.Criar("BEM VINDO", "Chega bem vindo você acaba de aderir os Plano: " + plano.Nome, TipoNotificacao.Sistema, usuario, null);
+            //Notificar o usuário          
+            NotificacaoAzureServiceBusService notificacao = new NotificacaoAzureServiceBusService()
+            {
+                Mensagem = $"Seja bem vindo ao Spotify MS {usuario.Nome}",
+                Nome = usuario.Nome,
+                IdUsuario = usuario.Id
+            };
+
 
             await this.ServiceBusService.SendMessage(notificacao);
 
@@ -73,10 +79,13 @@ namespace SpotifyMs.Aplication.Conta
             var usuario = this.UsuarioRepository.Find(x => x.Email == email && x.Senha == senha.HashSHA256()).FirstOrDefault();
             var result = this.Mapper.Map<UsuarioDto>(usuario);
 
-
-            //Notificar login o usuário         
-            Notificacao notificacao = Notificacao.Criar("NOVO LOGIN", $"Alerta: {usuario.Nome} acabou de fazer login as {DateTime.Now}", TipoNotificacao.Sistema, usuario, null);
-
+            //Notificar o usuário          
+            NotificacaoAzureServiceBusService notificacao = new NotificacaoAzureServiceBusService()
+            {
+                Mensagem = $"Alerta: {usuario.Nome} acabou de fazer login as {DateTime.Now}",
+                Nome = usuario.Nome,
+                IdUsuario = usuario.Id
+            };
 
             await this.ServiceBusService.SendMessage(notificacao);
 

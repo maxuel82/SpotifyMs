@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyMs.Aplication", "Spo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyMs.Admin", "SpotifyMs.Admin\SpotifyMs.Admin.csproj", "{640105DF-2A65-4247-B824-4FBBC2C1F715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyMs.STS", "SpotifyMs.STS\SpotifyMs.STS.csproj", "{C1EA48A4-C48B-4CED-8302-21719207C4A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyMs.STS", "SpotifyMs.STS\SpotifyMs.STS.csproj", "{C1EA48A4-C48B-4CED-8302-21719207C4A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessaNotificacao", "ProcessaNotificacao\ProcessaNotificacao.csproj", "{06392F91-DE7A-41C0-BAFD-247630DB6C80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{C1EA48A4-C48B-4CED-8302-21719207C4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1EA48A4-C48B-4CED-8302-21719207C4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1EA48A4-C48B-4CED-8302-21719207C4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06392F91-DE7A-41C0-BAFD-247630DB6C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06392F91-DE7A-41C0-BAFD-247630DB6C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06392F91-DE7A-41C0-BAFD-247630DB6C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06392F91-DE7A-41C0-BAFD-247630DB6C80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

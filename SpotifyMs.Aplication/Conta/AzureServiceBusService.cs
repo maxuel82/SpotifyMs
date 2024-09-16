@@ -20,7 +20,7 @@ namespace SpotifyMs.Aplication.Conta
             this.ConnectionString = configuration["AzureServiceBus:ConnectionString"];
         }
 
-        public async Task SendMessage(Notificacao notificacao)
+        public async Task SendMessage(NotificacaoAzureServiceBusService notificacao)
         {
             ServiceBusClient client;
             ServiceBusSender sender;
