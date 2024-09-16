@@ -122,4 +122,4 @@ app.MapControllers();
 
 app.Run();
 
-//Tentativa publicação azure web app - spotify-ms-api2  v9   subindo storage account
+//Tentativa publicação azure web app - spotify-ms-api2  v10   subindo ApplicationInsights
